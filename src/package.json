@@ -17,7 +17,7 @@
 		"type": "git",
 		"url": "git+https://github.com/aqacy/compare-pdf.git"
 	},
-	"homepage": "https://github.com/marcdacz/compare-pdf#readme",
+	"author": "Dedalus HealthCare <bob.thebuilder@dedalus.com>",
 	"keywords": [
 		"pdf",
 		"graphicsMagick",

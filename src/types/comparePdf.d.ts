@@ -2,6 +2,11 @@ export as namespace ComparePdf;
 
 export default ComparePdf;
 
+export interface ComparePdfConfigLike {
+    paths?: Partial<PathConfig>;
+    settings?: Partial<SettingsConfig>;
+}
+
 export interface ComparePdfConfig {
     paths: PathConfig;
     settings: SettingsConfig;

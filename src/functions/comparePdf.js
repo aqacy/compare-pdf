@@ -4,9 +4,20 @@ const utils = require('./utils');
 const compareData = require('./compareData');
 const compareImages = require('./compareImages');
 
+const defaultConfig = utils.copyJsonObject(require('./config'));
+
 class ComparePdf {
-	constructor(config = utils.copyJsonObject(require('./config'))) {
-		this.config = config;
+	constructor(config = {}) {
+		this.config = {
+			paths: {
+				...defaultConfig.paths,
+				...config.paths
+			},
+			settings: {
+				...defaultConfig.settings,
+				...config.settings
+			}
+		};
 		utils.ensurePathsExist(this.config);
 
 		this.opts = {
