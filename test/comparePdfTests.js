@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const comparePdf = require('../.');
+const comparePdf = require('../src');
 const chai = require('chai');
 const expect = chai.expect;
 

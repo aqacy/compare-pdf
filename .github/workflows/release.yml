@@ -1,0 +1,50 @@
+name: Release
+run-name: release@${{ github.ref_name }}
+on:
+  workflow_dispatch:
+
+# Cancel outdated runs
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GITHUB_CI: true
+  SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+  PRETTY_APP_NAME: Compare PDF
+  APP_NAME: compare-pdf
+  NODE_VERSION:
+
+jobs:
+  A1-Release:
+    runs-on:
+      - docker
+    steps:
+      - name: VCS (Setup)
+        uses: dedalus-cis4u/with-standard-setup@master
+        with:
+          # required for CLI flatten plugin
+          # remove it and suffer the consequences
+          git-checkout: 'all'
+
+      - name: Revision (Export)
+        run: |
+          NODE_VERSION=$(node -p -e "require('./package.json').version")echo $NODE_VERSION
+          echo "REVISION=${NODE_VERSION}" >> $GITHUB_ENV
+
+      - name: Release (Docker)
+        run: ./scripts/release-in-docker.sh
+
+      - name: GitHub (Create Release)
+        uses: ncipollo/release-action@v1.14.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REVISION: ${{ env.REVISION }}
+          APP_NAME: ${{ env.APP_NAME }}
+          PRETTY_APP_NAME: ${{ env.PRETTY_APP_NAME }}
+        with:
+          tag: ${{ env.APP_NAME }}-${{ env.REVISION }}
+          name: ${{ env.PRETTY_APP_NAME }} ${{ env.REVISION }}
+          bodyFile: release_body.txt
+          draft: false
+          prerelease: false

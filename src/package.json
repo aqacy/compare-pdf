@@ -1,13 +1,17 @@
 {
-	"name": "compare-pdf",
-	"version": "1.1.8",
+	"name": "@orbis-u/compare-pdf",
+	"version": "1.0.0",
 	"description": "Standalone node module that compares pdfs",
-	"main": "./functions/comparePdf",
+	"main": "src/functions/comparePdf",
 	"types": "./types/comparePdf.d.ts",
+	"publishConfig": {
+		"registry": "https://repo-nexus.orbis.dedalus.com/nexus/repository/npm-internal/"
+	},
 	"scripts": {
-		"mocha": "node ./node_modules/mocha/bin/mocha",
-		"test": "mocha --recursive --timeout 600000",
-		"test-ts": "env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --recursive --timeout 600000 --require ts-node/register 'test/**/*.ts'"
+		"build": "../node_modules/.bin/tsc",
+		"mocha": "node ../node_modules/mocha/bin/mocha",
+		"test": "../node_modules/.bin/mocha --recursive --timeout 600000",
+		"test-ts": "env TS_NODE_PROJECT=\"tsconfig.testing.json\" mocha --recursive --timeout 600000 --require ts-node/register 'src/test/**/*.ts'"
 	},
 	"repository": {
 		"type": "git",

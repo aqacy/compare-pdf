@@ -1,5 +1,5 @@
 import * as chai from "chai";
-import comparePdf, { ComparePdfConfig } from "../.";
+import comparePdf, { ComparePdfConfig } from "../src";
 
 const expect = chai.expect;
 const fs = require("fs-extra");
