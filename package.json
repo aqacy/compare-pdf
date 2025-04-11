@@ -11,7 +11,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/marcdacz/compare-pdf.git"
+		"url": "git+https://github.com/aqacy/compare-pdf.git"
 	},
 	"homepage": "https://github.com/marcdacz/compare-pdf#readme",
 	"keywords": [
