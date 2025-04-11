@@ -3,24 +3,28 @@ export as namespace ComparePdf;
 export default ComparePdf;
 
 export interface ComparePdfConfig {
-    paths: {
-        actualPdfRootFolder: string;
-        baselinePdfRootFolder: string;
-        actualPngRootFolder: string;
-        baselinePngRootFolder: string;
-        diffPngRootFolder: string;
-    };
-    settings: {
-        imageEngine: string;
-        density: number | string;
-        quality: number | string;
-        tolerance: number | string;
-        threshold: number | string;
-        cleanPngPaths?: boolean;
-        matchPageCount?: boolean;
-        disableFontFace?: boolean;
-        verbosity?: number | string;
-    };
+    paths: PathConfig;
+    settings: SettingsConfig;
+}
+
+export interface PathConfig {
+    actualPdfRootFolder: string;
+    baselinePdfRootFolder: string;
+    actualPngRootFolder: string;
+    baselinePngRootFolder: string;
+    diffPngRootFolder: string;
+}
+
+export interface SettingsConfig {
+    imageEngine: string;
+    density: number | string;
+    quality: number | string;
+    tolerance: number | string;
+    threshold: number | string;
+    cleanPngPaths?: boolean;
+    matchPageCount?: boolean;
+    disableFontFace?: boolean;
+    verbosity?: number | string;
 }
 
 export interface ComparePdfOpts {
